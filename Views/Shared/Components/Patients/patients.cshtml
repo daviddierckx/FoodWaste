@@ -1,0 +1,15 @@
+﻿
+
+@{
+    var patient = ViewData["PatientCount"];
+}
+
+@if((int)patient <= 0)
+            {
+                <p class="patient-count" style="color:red">Aantal patienten: @patient</p>
+            }
+            else
+            {
+               <p class="patient-count" style="color:forestgreen">Aantal patienten: @patient</p>
+            }
+

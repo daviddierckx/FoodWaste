@@ -1,0 +1,15 @@
+﻿.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+    text-decoration:none;
+}
+
+.validation-summary-valid {
+    display: none;
+    text-decoration: none;
+}
+.patient-count {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+}

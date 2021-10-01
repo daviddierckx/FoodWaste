@@ -1,0 +1,33 @@
+﻿@model IEnumerable<AvansFysio.Models.Patient>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <a asp-action="VoegPatient">
+        <button type="button" class="btn btn-success">Toevoegen Patient</button>
+    </a>
+    <h1>Lijst Van Patiënten</h1>
+    <div class="text-center p-2">
+        <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <tr><th>ID</th><th>Naam</th><th>Leeftijd</th><th></th></tr>
+            </thead>
+            <tbody>
+                @foreach (AvansFysio.Models.Patient r in Model)
+                {
+                    <tr>
+                        <td>@r.Id</td>
+                        <td>@r.Naam</td>
+                        <td>@r.Leeftijd</td>
+                        <td>
+                        <a asp-action="Details" asp-route-id="@r.Id" asp-route-slug="@r.Slug">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

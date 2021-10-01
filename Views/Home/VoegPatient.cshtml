@@ -1,0 +1,18 @@
+﻿@model AvansFysio.Models.Patient
+@{
+    ViewData["Title"] = "Toevoegen Patiënt";
+}
+
+<div class="text-center">
+    
+    <form asp-action="VoegPatient" method="post" class="m-2">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Naam">Naam: </label>
+        <input asp-for="Naam" />
+        <br />
+        <label asp-for="Leeftijd">Leeftijd:</label>
+        <input asp-for="Leeftijd" />
+        <br />
+        <button class="btn btn-success" type="submit">Voeg Patient</button>
+    </form>
+</div>

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AspnetCoreIdentity.Pages
+namespace AvansFysio.Pages
 {
     public class LogoutModel : PageModel
     {

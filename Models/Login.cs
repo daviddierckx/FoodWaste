@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AspnetCoreIdentity.Models
+namespace AvansFysio.Models
 {
     public class Login
     {

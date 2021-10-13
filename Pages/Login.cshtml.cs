@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspnetCoreIdentity.Models;
+using AvansFysio.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AspnetCoreIdentity.Pages
+namespace AvansFysio.Pages
 {
     public class LoginModel : PageModel
     {

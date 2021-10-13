@@ -29,14 +29,7 @@
 </style>
 <h1>Patienten Register</h1>
 <br />
-@using (Html.BeginForm())
-{
-    <label for="datePicker">Find By Date:</label>
 
-    @Html.TextBox("datePicker", null, new { @type = "date" })
-
-    <input id="submitBtn" type="submit" value="Search" />
-}
 @if (ViewBag.NameSortParm == "vandaag")
 {
     @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class" });

@@ -3,32 +3,46 @@
 @{
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <h1 class="mb-3">Register</h1>
-            <form method="post">
-                <div asp-validation-summary="All" class="text-danger">
+
+
+<img class="wave" src="https://i.postimg.cc/sDG8zyXM/wave.png">
+<div class="container">
+    <div class="img">
+        <img src="/img/Massage therapist-bro (2).png">
+    </div>
+    <div class="login-content">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+                <img src="/img/fysiologo.png">
+                <h2 class="title">Register</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <input placeholder="Email" type="text" asp-for="Model.Email" class="input" />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" asp-for="Model.Email">Email Address</label>
-                    <input type="text" asp-for="Model.Email" class="form-control" />
-                    <span asp-validation-for="Model.Email" class="text-danger"></span>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <input placeholder="Password" type="password" asp-for="Model.Password" class="input" />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" asp-for="Model.Password">Password</label>
-                    <input type="password" asp-for="Model.Password" class="form-control" />
-                    <span asp-validation-for="Model.Password" class="text-danger"></span>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <input placeholder="Confirm Password" type="password" asp-for="Model.ConfirmPassword" class="input" />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" asp-for="Model.ConfirmPassword">Confirm Password</label>
-                    <input type="password" asp-for="Model.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Model.ConfirmPassword" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
-            </form>
-        </div>
+                <br />
+                <input type="submit" class="btn" value="Register">
+                  <a asp-page="/Login" class="secondary-btn">Login</a>
+
+        </form>
     </div>
 </div>

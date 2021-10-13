@@ -3,30 +3,39 @@
 @{
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-12 col-lg-4">
-            <h1 class="mb-3">Login</h1>
 
-            <form method="post">
-                <div class="mb-3">
-                    <label class="form-label" asp-for="Model.Email">Email Address</label>
-                    <input type="text" asp-for="Model.Email" class="form-control" />
-                    <span asp-validation-for="Model.Email" class="text-danger"></span>
+
+<img class="wave" src="https://i.postimg.cc/sDG8zyXM/wave.png">
+<div class="container">
+    <div class="img">
+        <img src="/img/Massage therapist-bro (2).png">
+    </div>
+    <div class="login-content">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <img src="/img/fysiologo.png">
+            <h2 class="title">Welcome</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" asp-for="Model.Password">Password</label>
-                    <input type="password" asp-for="Model.Password" class="form-control" />
-                    <span asp-validation-for="Model.Password" class="text-danger"></span>
+                <div class="div">
+                    <input placeholder="Email" type="text" asp-for="Model.Email" class="input" />
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" asp-for="Model.RememberMe" />
-                    <label class="form-check-label" asp-for="Model.RememberMe">Remember Me?</label>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
                 </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                <div class="div">
+                    <input placeholder="Password" type="password" asp-for="Model.Password" class="input" />
                 </div>
-            </form>
-        </div>
+            </div>
+            <br />
+            <input type="submit" class="btn" value="Login">
+            <a asp-page="/Register"  class="secondary-btn">Register</a>
+
+
+        </form>
     </div>
 </div>

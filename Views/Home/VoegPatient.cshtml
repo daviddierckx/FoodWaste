@@ -3,16 +3,148 @@
     ViewData["Title"] = "Toevoegen Patiënt";
 }
 
-<div class="text-center">
-    
-    <form asp-action="VoegPatient" method="post" class="m-2">
-        <div asp-validation-summary="All"></div>
-        <label asp-for="Naam">Naam: </label>
-        <input asp-for="Naam" />
-        <br />
-        <label asp-for="Leeftijd">Leeftijd:</label>
-        <input asp-for="Leeftijd" />
-        <br />
-        <button class="btn btn-success" type="submit">Voeg Patient</button>
-    </form>
+
+<div class="form">
+    <div class="container">
+
+        <form class="well form-horizontal align-content-center" asp-action="VoegPatient" method="post" id="contact_form">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend><center><h2><b>Toevoegen Patient</b></h2></center></legend><br>
+
+                <!-- Text input-->
+                <div asp-validation-summary="All"></div>
+
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Naam">Patient</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="Naam">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Leeftijd">Leeftijd</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="Leeftijd">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Omschrijving">Omschrijving</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i></i></span>
+                        </div>
+                        <textarea class="form-control col-md-6" aria-label="" asp-for="Omschrijving"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="DiagnoseCode">Diagnose Code</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="DiagnoseCode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="MedewerkerOfStudent">Medewerker of student</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-list"></i></span>
+                        </div>
+                        <select asp-for="MedewerkerOfStudent">
+                            <option selected>Medewerker</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="IntakeGedaanDoor">Intake gedaan door</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="IntakeGedaanDoor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="onderSupervisieVan">Onder supervisie van</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="onderSupervisieVan">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="HoofdBehandelaar">Hoofd behandelaar</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="HoofdBehandelaar">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="DatumAanmelding">Datum aanmelding</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="DatumAanmelding">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-6  control-label" asp-for="DatumOntslag">Datum ontslag</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-calendar"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="DatumAanmelding">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Opmerkingen">Opmerkingen</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i></i></span>
+                        </div>
+                        <textarea class="form-control col-md-6" aria-label="" asp-for="Opmerkingen"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Behandelplan">Behandelplan</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="Behandelplan">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-6 control-label" asp-for="Behandeling">Diagnose Code</label>
+                    <div class="input-group input-group-sm col-md-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input placeholder="Naam" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" asp-for="Behandeling">
+                    </div>
+                </div>
+
+
+
+            </fieldset>
+            <button class="btn btn-success" type="submit">Voeg Patient</button>
+
+        </form>
+    </div>
 </div>

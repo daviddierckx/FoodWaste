@@ -1,0 +1,94 @@
+﻿@model AvansFysio.Models.Patient
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Patient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Naam" class="control-label"></label>
+                <input asp-for="Naam" class="form-control" />
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Leeftijd" class="control-label"></label>
+                <input asp-for="Leeftijd" class="form-control" />
+                <span asp-validation-for="Leeftijd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Omschrijving" class="control-label"></label>
+                <input asp-for="Omschrijving" class="form-control" />
+                <span asp-validation-for="Omschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiagnoseCode" class="control-label"></label>
+                <input asp-for="DiagnoseCode" class="form-control" />
+                <span asp-validation-for="DiagnoseCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MedewerkerOfStudent" class="control-label"></label>
+                <input asp-for="MedewerkerOfStudent" class="form-control" />
+                <span asp-validation-for="MedewerkerOfStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntakeGedaanDoor" class="control-label"></label>
+                <input asp-for="IntakeGedaanDoor" class="form-control" />
+                <span asp-validation-for="IntakeGedaanDoor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="onderSupervisieVan" class="control-label"></label>
+                <input asp-for="onderSupervisieVan" class="form-control" />
+                <span asp-validation-for="onderSupervisieVan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoofdBehandelaar" class="control-label"></label>
+                <input asp-for="HoofdBehandelaar" class="form-control" />
+                <span asp-validation-for="HoofdBehandelaar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumAanmelding" class="control-label"></label>
+                <input asp-for="DatumAanmelding" class="form-control" />
+                <span asp-validation-for="DatumAanmelding" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumOntslag" class="control-label"></label>
+                <input asp-for="DatumOntslag" class="form-control" />
+                <span asp-validation-for="DatumOntslag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Opmerkingen" class="control-label"></label>
+                <input asp-for="Opmerkingen" class="form-control" />
+                <span asp-validation-for="Opmerkingen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Behandelplan" class="control-label"></label>
+                <input asp-for="Behandelplan" class="form-control" />
+                <span asp-validation-for="Behandelplan" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Behandeling" class="control-label"></label>
+                <input asp-for="Behandeling" class="form-control" />
+                <span asp-validation-for="Behandeling" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

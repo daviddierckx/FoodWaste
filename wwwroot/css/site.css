@@ -72,10 +72,12 @@ body {
 
 /*--------------*/
 ul li a:hover {
-    color: !;
 }
 
 .navbar-nav .nav-item.active .nav-link,
 .navbar-nav .nav-item:hover .nav-link {
     color: #28a745 !important;
+}
+.fa-plus {
+    padding-right: 10px;
 }

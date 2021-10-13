@@ -1,14 +1,14 @@
 ﻿using AvansFysio.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AvansFysio.Repository
 {
     public interface IPatientRepository
     {
-        IEnumerable<Patient> Patients { get; }
-
-        void AddPatient(Patient patient);
-        Patient GetPatient(int id);
-        int GetPatientCount();
+        Task AddPatient(Patient patient);
+        IEnumerable<Patient> GetAllPatients();
+        IEnumerable<Patient> GetPatient(int id);
+        public IEnumerable<Patient> GetAllPatientsSorted();
     }
 }

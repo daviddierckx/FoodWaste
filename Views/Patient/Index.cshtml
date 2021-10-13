@@ -1,0 +1,96 @@
+﻿@model IEnumerable<AvansFysio.Models.Patient>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style type="text/css">
+    a.my-class2 {
+        display: inline-block;
+        color: white;
+        background-color: #28a745;
+        border: 1px solid #28a745;
+        padding: .375rem .75rem;
+        border-radius: .25rem;
+        float: right;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+
+    a.my-class {
+        display: inline-block;
+        color: #28a745;
+        border: 1px solid #28a745;
+        padding: .375rem .75rem;
+        border-radius: .25rem;
+        float: right;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+</style>
+<h1>Patienten Register</h1>
+<br />
+@using (Html.BeginForm())
+{
+    <label for="datePicker">Find By Date:</label>
+
+    @Html.TextBox("datePicker", null, new { @type = "date" })
+
+    <input id="submitBtn" type="submit" value="Search" />
+}
+@if (ViewBag.NameSortParm == "vandaag")
+{
+    @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class" });
+
+}
+else
+{
+    @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class2" });
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiagnoseCode)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DatumAanmelding)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Behandelplan)
+            </th>
+            <th><a class="btn btn-outline-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naam)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiagnoseCode)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumAanmelding)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Behandelplan)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

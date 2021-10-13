@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using AvansFysio.Repository;
+using AvansFysio.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AvansFysio
 {
@@ -24,6 +26,7 @@ namespace AvansFysio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddControllersWithViews();
 
             services.AddRouting(options =>
@@ -32,8 +35,16 @@ namespace AvansFysio
                 options.AppendTrailingSlash = true;
             });
             services.AddMvc();
-            services.AddSingleton<IPatientRepository, PatientRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddDbContext<PatientContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
+            services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AuthConnectionString")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.LoginPath = "/Login";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,13 +62,15 @@ namespace AvansFysio
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
+                    pattern: "{controller=Patient}/{action=Index}/{id?}/{slug?}");
             });
         }
     }

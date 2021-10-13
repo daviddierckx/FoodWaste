@@ -23,7 +23,7 @@ namespace AvansFysio.Controllers
 
         public IActionResult Index()
         {
-            return View(_repository.Patients.ToList());
+            return View(_repository.GetAllPatients());
         }
 
         [HttpGet]
@@ -49,7 +49,7 @@ namespace AvansFysio.Controllers
 
         public ActionResult Details(int id)
         {
-            Patient patient = _repository.GetPatient(id);
+            Patient patient = (Patient)_repository.GetPatient(id);
             if (patient == null)
             {
                 return View("NotFound");

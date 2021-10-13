@@ -7,27 +7,37 @@ using System.Threading.Tasks;
 
 namespace AvansFysio.Repository
 {
-    public class PatientRepository : IPatientRepository   
+    public class PatientRepository : IPatientRepository
     {
-        public int num = 0;
-        public List<Patient> patients = new List<Patient>();
 
+        private readonly PatientContext _context;
+        public PatientRepository(PatientContext context)
+        {
+            _context = context;
+        }
 
-        public IEnumerable<Patient> Patients => patients;
+        public IEnumerable<Patient> GetAllPatients()
+        {
+            return _context.Patients.ToList();
+        }
+        public IEnumerable<Patient> GetAllPatientsSorted()
+        {
+            var sortedRepository = _context.Patients.Where(x => x.DatumAanmelding.Date == DateTime.Now.Date).ToList();
+            return sortedRepository;
+        }
+        public async Task AddPatient(Patient patient)
+        {
+            _context.Patients.Add(patient);
+            await _context.SaveChangesAsync();
+        }
+        public IEnumerable<Patient> GetPatient(int id)
+        {
+            return _context.Patients.Where(g => g.Id == id);
+        }
 
-        public void AddPatient(Patient patient)
-        {
-            patient.Id = num;
-            patients.Add(patient);
-            num++;
-        }
-        public Patient GetPatient(int id)
-        {
-            return patients.Find(x => x.Id == id);
-        }
-        public int GetPatientCount()
-        {
-            return Patients.Count();
-        }
+        //public int GetPatientCount()
+        //{
+        //    return Patients.Count();
+        //}
     }
 }

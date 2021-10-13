@@ -11,19 +11,20 @@ namespace AvansFysio.Components
 {
     public class PatientsViewComponent:ViewComponent
     {
-        private readonly IPatientRepository _repository;
+        private readonly IPatientRepository _patientRepository;
 
-        public PatientsViewComponent(IPatientRepository repository)
+
+        public PatientsViewComponent(IPatientRepository patientRepository)
         {
-            _repository = repository;
+            _patientRepository = patientRepository;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            var patients =  _repository.GetPatientCount();
+            var patients = _patientRepository.GetAllPatientsSorted().Count();
             ViewData["PatientCount"] = patients;
             return View("patients");
         }
-      
+
     }
 }

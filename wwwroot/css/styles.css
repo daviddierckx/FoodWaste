@@ -13,3 +13,20 @@
     font-size: 12px;
     font-weight: bold;
 }
+
+
+input {
+    width: 100%;
+}
+
+.form{
+    width: 100%;
+    margin: 0 auto;
+}
+
+label{
+    padding-top: 10px;
+}
+.fa-plus{
+    padding-right: 10px;
+}

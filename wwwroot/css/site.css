@@ -137,7 +137,7 @@ body {
 .limiter {
     display: inline-block;
     float: left;
-    width: 1200px;
+    width: 960px;
 }
 .count {
     display: inline-block;
@@ -171,7 +171,7 @@ body {
 }
 
 .wrap-table100 {
-    width: 1170px;
+    width: 900px;
 }
 
 /*//////////////////////////////////////////////////////////////////

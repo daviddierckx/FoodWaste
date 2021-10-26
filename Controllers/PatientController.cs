@@ -40,7 +40,7 @@ namespace AvansFysio.Controllers
             return View(patients.ToList());
         }
         // GET: Patient/Details/5
-        [Authorize]
+        [Authorize(Roles ="Therapeut")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

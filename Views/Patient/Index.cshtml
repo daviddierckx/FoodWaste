@@ -6,7 +6,7 @@
 <style type="text/css">
     a.my-class2 {
         color: white;
-        display:block;
+        display: block;
         width: 90px;
         background-color: #198754;
         padding: .375rem .75rem;
@@ -14,21 +14,20 @@
         text-decoration: none;
         margin-bottom: 10px;
     }
-
-   
 </style>
 
-    <h1>Patienten Register</h1>
-    <br />
-    @if (ViewBag.NameSortParm == "vandaag")
-    {
-        @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class2" });
+<h1>Patienten Register</h1>
+<br />
 
-    }
-    else
-    {
-        @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class2" });
-    }
+@if (ViewBag.NameSortParm == "vandaag")
+{
+    @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class2" });
+
+}
+else
+{
+    @Html.ActionLink("Vandaag", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @class = "my-class2" });
+}
 <div class="count">
     <h1>
         <i class="far fa-user"></i>
@@ -36,118 +35,121 @@
     <h2>@await Component.InvokeAsync("Patients")</h2>
     <p>Vandaag</p>
 </div>
-    <div class="limiter">
-		<div class="">
-            <div class="wrap-table100">
-                <div class="table100 ver1 m-b-110">
-                    <div class="table100-head">
-                        <table>
-                            <thead>
-                                <tr class="row100 head">
-                                    <th class="cell100 column1">@Html.DisplayNameFor(model => model.Naam)</th>
-                                    <th class="cell100 column2">
-                                        @Html.DisplayNameFor(model => model.DiagnoseCode)
-                                    </th>
-                                    <th class="cell100 column3">
-                                        @Html.DisplayNameFor(model => model.DatumAanmelding)
-                                    </th>
-                                    <th class="cell100 column4">
-                                        @Html.DisplayNameFor(model => model.Behandelplan)
-                                    </th>
-                                    <th class="cell100 column5"><a class="btn btn-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a></th>
+
+<div class="limiter">
+        <div class="wrap-table100">
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">@Html.DisplayNameFor(model => model.Naam)</th>
+                                <th class="cell100 column2">
+                                    @Html.DisplayNameFor(model => model.DiagnoseCode)
+                                </th>
+                                <th class="cell100 column3">
+                                    @Html.DisplayNameFor(model => model.DatumAanmelding)
+                                </th>
+                                <th class="cell100 column4">
+                                    @Html.DisplayNameFor(model => model.Behandelplan)
+                                </th>
+                                <th class="cell100 column5">
+                                    <a class="btn btn-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a>
+
+                                </th>
 
 
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    <table>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="row100 body">
+                                    <td class="cell100 column1">
+                                        @Html.DisplayFor(modelItem => item.Naam)
+                                    </td>
+
+                                    <td class="cell100 column2">
+                                        @Html.DisplayFor(modelItem => item.DiagnoseCode)
+                                    </td>
+
+                                    <td class="cell100 column3">
+                                        @Html.DisplayFor(modelItem => item.DatumAanmelding)
+                                    </td>
+
+                                    <td class="cell100 column4">
+                                        @Html.DisplayFor(modelItem => item.Behandelplan)
+                                    </td>
+
+                                    <td class="cell100 column5">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Delete</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                        </table>
-                    </div>
-
-                    <div class="table100-body js-pscroll">
-                        <table>
-                         
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr class="row100 body">
-                                        <td class="cell100 column1">
-                                            @Html.DisplayFor(modelItem => item.Naam)
-                                        </td>
-
-                                        <td class="cell100 column2">
-                                            @Html.DisplayFor(modelItem => item.DiagnoseCode)
-                                        </td>
-
-                                        <td class="cell100 column3">
-                                            @Html.DisplayFor(modelItem => item.DatumAanmelding)
-                                        </td>
-
-                                        <td class="cell100 column4">
-                                            @Html.DisplayFor(modelItem => item.Behandelplan)
-                                        </td>
-
-                                        <td class="cell100 column5">
-                                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Delete</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
+                            }
+                        </tbody>
 
 
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     @*<div class="card-patient-table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DiagnoseCode)
-                    </th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.DatumAanmelding)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Behandelplan)
-                    </th>
-                    <th><a class="btn btn-outline-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Naam)
-                        </td>
+                        <th>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiagnoseCode)
-                        </td>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiagnoseCode)
+                        </th>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DatumAanmelding)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Behandelplan)
-                        </td>
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Delete</a>
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DatumAanmelding)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Behandelplan)
+                        </th>
+                        <th><a class="btn btn-outline-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-        </div>
-    </div>*@
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Naam)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DiagnoseCode)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DatumAanmelding)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Behandelplan)
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>*@

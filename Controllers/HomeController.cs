@@ -23,6 +23,10 @@ namespace AvansFysio.Controllers
 
         public IActionResult Index()
         {
+            if (User.IsInRole("Therapeut"))
+            {
+                return Redirect("~/Patient/Index");
+            }
             return View(_repository.GetAllPatients());
         }
 

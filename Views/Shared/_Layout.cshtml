@@ -28,9 +28,23 @@
             <ul class="sidebar-navigation">
                 <li>
                     <a asp-controller="Patient" asp-action="Index">
-                        <i class="fa fa-address-book" aria-hidden="true"></i>Patienten
+                        <i class="fa fa-address-book" aria-hidden="true"></i>Home
                     </a>
                 </li>
+                <li>
+                    <a asp-controller="Patient" asp-action="Index">
+                        <i class="fa fa-address-book" aria-hidden="true"></i>Behandelingen
+                    </a>
+                </li>
+                @if (User.IsInRole("Therapeut"))
+                {
+                    <li>
+                        <a asp-controller="Patient" asp-action="Index">
+                            <i class="fa fa-address-book" aria-hidden="true"></i>Patienten
+                        </a>
+                    </li>
+                }
+
 
             </ul>
 
@@ -41,16 +55,23 @@
         </div>
         @{
             var user = await UserManager.GetUserAsync(User);
-        }
-        <div class="nav-bar">
-            <div class="nav-bar-items">
-                <div style="float:right; ">
-                    <p>Aantal patientent vandaag: @await Component.InvokeAsync("Patients")</p> 
 
-                </div>
+
+}
+    <div class="nav-bar">
+        <div class="nav-bar-items">
+            <div style="float:right; ">
+                @if (User.IsInRole("Therapeut"))
+                {
+                    <p>Aantal patientent vandaag: @await Component.InvokeAsync("Patients")</p>
+                }
                 <p>Hallo, @user.UserName</p>
             </div>
+
         </div>
+        
+
+    </div>
         <div class="content-container">
             <div class="container-fluid">
 

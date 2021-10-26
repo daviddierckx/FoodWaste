@@ -34,6 +34,7 @@ namespace AvansFysio
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = true;
             });
+            
             services.AddMvc();
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddDbContext<PatientContext>(options =>

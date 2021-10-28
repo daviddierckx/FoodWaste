@@ -14,7 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="BehandelPlanNaam" class="control-label"></label>
+                <label asp-for="BehandelPlanNaam" class="control-label">Behandelplan naam
+               </label>
                 <input asp-for="BehandelPlanNaam" class="form-control" />
                 <span asp-validation-for="BehandelPlanNaam" class="text-danger"></span>
             </div>
@@ -29,14 +30,20 @@
                 <span asp-validation-for="Hoeveel" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="PatientId" class="control-label">Patient ID</label>
+                <input asp-for="PatientId" value="@Model.PatientId"  readonly class="form-control" />
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <a href="~/patient/details/@Model.PatientId">Terug naar gebruiker</a>
 </div>
 
 @section Scripts {

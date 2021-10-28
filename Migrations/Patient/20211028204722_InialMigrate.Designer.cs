@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AvansFysio.Migrations.Patient
 {
     [DbContext(typeof(PatientContext))]
-    [Migration("20211028142626_InialMigrate")]
+    [Migration("20211028204722_InialMigrate")]
     partial class InialMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,47 @@ namespace AvansFysio.Migrations.Patient
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AvansFysio.Models.Behandeling", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BehandelingUitgevoerdDatum")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("BehandelingUitgevoerdDoor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Bijzonderheden")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("OefenzaalOfBehandel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Omschrijving")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Behandeling");
+                });
 
             modelBuilder.Entity("AvansFysio.Models.Behandelplan", b =>
                 {
@@ -38,7 +79,7 @@ namespace AvansFysio.Migrations.Patient
                     b.Property<int>("Hoeveel")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int>("PatientId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -46,6 +87,39 @@ namespace AvansFysio.Migrations.Patient
                     b.HasIndex("PatientId");
 
                     b.ToTable("Behandelplan");
+                });
+
+            modelBuilder.Entity("AvansFysio.Models.Opmerkingen", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Datum")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Opmerking")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("OpmerkingenGemaaktDoor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZichtbaarVoorPatiënt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Opmerkingen");
                 });
 
             modelBuilder.Entity("AvansFysio.Models.Patient", b =>
@@ -107,11 +181,35 @@ namespace AvansFysio.Migrations.Patient
                     b.ToTable("Patients");
                 });
 
+            modelBuilder.Entity("AvansFysio.Models.Behandeling", b =>
+                {
+                    b.HasOne("AvansFysio.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("AvansFysio.Models.Behandelplan", b =>
                 {
                     b.HasOne("AvansFysio.Models.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("AvansFysio.Models.Opmerkingen", b =>
+                {
+                    b.HasOne("AvansFysio.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Patient");
                 });

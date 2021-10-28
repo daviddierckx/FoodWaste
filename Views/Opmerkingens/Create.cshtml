@@ -1,0 +1,57 @@
+﻿@model AvansFysio.Models.Opmerkingen
+
+@{
+    ViewData["Title"] = "Create";
+    var patient = ViewData["ID"];
+
+}
+
+<div style="opacity:0">
+    <h1>Create</h1>
+
+    <h4>Opmerkingen</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" name="myForm" id="myForm" >
+                <div class="form-group">
+                    <label asp-for="Opmerking" class="control-label"></label>
+                    <input asp-for="Opmerking" value="/" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Datum" class="control-label"></label>
+                    <input asp-for="Datum" value="/" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="OpmerkingenGemaaktDoor" class="control-label"></label>
+                    <input asp-for="OpmerkingenGemaaktDoor" value="/" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ZichtbaarVoorPatiënt" class="control-label"></label>
+                    <input asp-for="ZichtbaarVoorPatiënt" value="/" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="PatientId" class="control-label">Patient ID</label>
+                        <input asp-for="PatientId" class="form-control" value="@patient" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload = function () {
+        document.forms['myForm'].submit();
+    }
+</script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

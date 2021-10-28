@@ -1,5 +1,5 @@
 ﻿
-@model AvansFysio.Models.Behandelplan
+@model dynamic
 
 @{
     ViewData["Title"] = "Details";
@@ -9,23 +9,28 @@
 <div class="section-profile">
     <div class="profile-container">
     <img src="~/img/fysiologo.png" style="width:100px" />
-    <h4>@Model.Patient.Naam, @Model.Patient.Leeftijd</h4>
-    <p>@Model.Patient.MedewerkerOfStudent</p>
+    <h4>@Model.Behandelplan.Patient.Naam, @Model.Behandelplan.Patient.Leeftijd</h4>
+    <p>@Model.Behandelplan.Patient.MedewerkerOfStudent</p>
     <button style="margin-bottom:30px">Change profile picture</button>
     <br />
 
     <button onclick="myFunction()" id="Opmerkingen-btn" class="btn btn-success"> Opmerkingen</button>
     <button onclick="myFunction()" id="Omschrijving-btn" class="btn btn-success">Omschrijving</button>
-    <button onclick="myFunction()" id="Omschrijving-btn" class="btn btn-success">Behandelingen</button>
+    <button onclick="myFunction()" id="Behandeling-btn" class="btn btn-success">Behandelingen</button>
 
 
     </div>
 
     <div class="profile-container profile-container-behandelplan">
-        <h4>Behandelplan: @Model.BehandelPlanNaam</h4>
-        <p>Hoeveel behandelingen per week: @Model.Hoeveel</p>
-        <p>Sessie duur: @Model.Duur</p>
+        <h4>Behandelplan: @Model.Behandelplan.BehandelPlanNaam</h4>
+        <p>Hoeveel behandelingen per week: @Model.Behandelplan.Hoeveel</p>
+        <p>Sessie duur: @Model.Behandelplan.Duur</p>
+        <a href="~/Behandelplans/Edit/@Model.Behandelplan.Id/">
+            <button class="btn btn-success" style="display:inline-block">
+                Edit
 
+            </button>
+        </a>
 
 
     </div>
@@ -34,7 +39,7 @@
 <div class="profile-details-container " id="Omschrijving">
     <div class="profile-details-header">
         <h4 style="display:inline-block">Omschrijving</h4>
-        <a asp-action="Edit" asp-route-id="@Model.Patient.Id">
+        <a asp-action="Edit" asp-route-id="@Model.Behandelplan.Patient.Id">
             <button class="btn btn-success" style="display:inline-block">
                 Edit
 
@@ -44,11 +49,11 @@
  </div>
 
     <div class="profile-details-container-text">
-        <p>Omschrijving klachten globaal </p><span>@Model.Patient.Omschrijving</span>
+        <p>Omschrijving klachten globaal </p><span>@Model.Behandelplan.Patient.Omschrijving</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Diagnose code</p><span>@Model.Patient.DiagnoseCode</span>
+        <p>Diagnose code</p><span>@Model.Behandelplan.Patient.DiagnoseCode</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
@@ -56,55 +61,110 @@
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Intake gedaan door</p><span>@Model.Patient.IntakeGedaanDoor</span>
+        <p>Intake gedaan door</p><span>@Model.Behandelplan.Patient.IntakeGedaanDoor</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
         <p>Intake onder supervisie van</p>
-        @if (!(@Model.Patient.onderSupervisieVan.Length > 1))
+        @if (!(@Model.Behandelplan.Patient.onderSupervisieVan.Length > 1))
         {
             <span>/</span>
         }
         else
         {
-            <span>@Model.Patient.onderSupervisieVan</span>
+            <span>@Model.Behandelplan.Patient.onderSupervisieVan</span>
         }
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Hoofdbehandelaar</p><span>@Model.Patient.HoofdBehandelaar</span>
+        <p>Hoofdbehandelaar</p><span>@Model.Behandelplan.Patient.HoofdBehandelaar</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Datum aanmelding</p><span>@Model.Patient.DatumAanmelding</span>
+        <p>Datum aanmelding</p><span>@Model.Behandelplan.Patient.DatumAanmelding</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Datum ontslag</p><span>@Model.Patient.DatumOntslag</span>
+        <p>Datum ontslag</p><span>@Model.Behandelplan.Patient.DatumOntslag</span>
         <hr />
     </div>
     <div class="profile-details-container-text">
-        <p>Hoofdbehandelaar</p><span>@Model.Patient.Opmerkingen</span>
+        <p>Hoofdbehandelaar</p><span>@Model.Behandelplan.Patient.Opmerkingen</span>
 
     </div>
 </div>
 <div class="profile-details-container " id="Opmerkingen" style="display:none">
     <div class="profile-details-header">
         <h4 style="display:inline-block">Opmerkingen</h4>
-        <a asp-action="Edit" asp-route-id="@Model.Patient.Id">
+        <a href="~/Opmerkingens/Edit/@Model.Behandelplan.Id/">
             <button class="btn btn-success" style="display:inline-block">
                 Edit
 
             </button>
-    
+
         </a>|
     </div>
+    @if (Model.Opmerkingen.Opmerking.Length > 1)
+    {
+        <div class="profile-details-container-text">
+            <p>Opmerking </p><span>@Model.Opmerkingen.Opmerking</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Datum</p><span>@Model.Opmerkingen.Datum</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Zichtbaar voor patient </p><span>@Model.Opmerkingen.ZichtbaarVoorPatiënt</span>
+            <hr />
+        </div>
+    }
+    </div>
+<div class="profile-details-container " id="Behandelingen" style="display:none">
+    <div class="profile-details-header">
+        <h4 style="display:inline-block">Behandeling</h4>
+        <a href="~/Behandelings/Edit/@Model.Behandelplan.Id/">
+            <button class="btn btn-success" style="display:inline-block">
+                Edit
+
+            </button>
+
+        </a>|
+    </div>
+    @if (Model.Behandeling.Type.Length > 1)
+    {
+        <div class="profile-details-container-text">
+            <p>Type </p><span>@Model.Behandeling.Type</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Omschrijving</p><span>@Model.Behandeling.Omschrijving</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Zaal: </p><span>@Model.Behandeling.OefenzaalOfBehandel</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Bijzonderheden: </p><span>@Model.Behandeling.Bijzonderheden</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Behandeling uitgevoerd door: </p><span>@Model.Behandeling.BehandelingUitgevoerdDoor</span>
+            <hr />
+        </div>
+        <div class="profile-details-container-text">
+            <p>Behandeling uitgevoerd datum: </p><span>@Model.Behandeling.OefenzaalOfBehandel</span>
+            <hr />
+        </div>
+    }
+
 </div>
 
-<a asp-action="Edit" asp-route-id="@Model.Patient.Id">Edit</a> |
-<a asp-action="Behandelplan" asp-route-id="@Model.Patient.Id">Behandelplan</a> |
+@*<a asp-action="Edit" asp-route-id="@Model.Behandelplan.Patient.Id">Edit</a> |
+<a asp-action="Behandelplan" asp-route-id="@Model.Behandelplan.Patient.Id">Behandelplan</a> |
 
-<a asp-action="Index">Back to List</a>
+<a asp-action="Index">Back to List</a>*@
 <script>
 
     function click() {

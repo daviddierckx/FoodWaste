@@ -9,23 +9,23 @@ using AvansFysio.Models;
 
 namespace AvansFysio.Controllers
 {
-    public class BehandelplansController : Controller
+    public class OpmerkingensController : Controller
     {
         private readonly PatientContext _context;
 
-        public BehandelplansController(PatientContext context)
+        public OpmerkingensController(PatientContext context)
         {
             _context = context;
         }
 
-        // GET: Behandelplans
+        // GET: Opmerkingens
         public async Task<IActionResult> Index()
         {
-            var patientContext = _context.Behandelplan.Include(b => b.Patient);
+            var patientContext = _context.Opmerkingen.Include(o => o.Patient);
             return View(await patientContext.ToListAsync());
         }
 
-        // GET: Behandelplans/Details/5
+        // GET: Opmerkingens/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,46 +33,45 @@ namespace AvansFysio.Controllers
                 return NotFound();
             }
 
-            var behandelplan = await _context.Behandelplan
-                .Include(b => b.Patient)
+            var opmerkingen = await _context.Opmerkingen
+                .Include(o => o.Patient)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (behandelplan == null)
+            if (opmerkingen == null)
             {
                 return NotFound();
             }
 
-            return View(behandelplan);
+            return View(opmerkingen);
         }
 
-        // GET: Behandelplans/Create
+        // GET: Opmerkingens/Create
         public IActionResult Create()
         {
             int lastProductId = _context.Patients.Max(item => item.Id);
-            ViewData["ID"] = lastProductId; 
+            ViewData["ID"] = lastProductId;
             return View();
         }
 
-        // POST: Behandelplans/Create
+        // POST: Opmerkingens/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BehandelPlanNaam,Duur,Hoeveel,PatientId")] Behandelplan behandelplan)
+        public async Task<IActionResult> Create([Bind("Id,Opmerking,Datum,OpmerkingenGemaaktDoor,ZichtbaarVoorPatiënt,PatientId")] Opmerkingen opmerkingen)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(behandelplan);
+                _context.Add(opmerkingen);
                 await _context.SaveChangesAsync();
-                
                 int lastProductId = _context.Patients.Max(item => item.Id);
                 ViewData["ID"] = lastProductId;
-                return RedirectToAction("Create", "Behandelings");
+                return Redirect("~/patient");
             }
-           
-            return View(behandelplan);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", opmerkingen.PatientId);
+            return View(opmerkingen);
         }
 
-        // GET: Behandelplans/Edit/5
+        // GET: Opmerkingens/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,23 +79,23 @@ namespace AvansFysio.Controllers
                 return NotFound();
             }
 
-            var behandelplan = await _context.Behandelplan.FindAsync(id);
-            if (behandelplan == null)
+            var opmerkingen = await _context.Opmerkingen.FindAsync(id);
+            if (opmerkingen == null)
             {
                 return NotFound();
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", behandelplan.PatientId);
-            return View(behandelplan);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", opmerkingen.PatientId);
+            return View(opmerkingen);
         }
 
-        // POST: Behandelplans/Edit/5
+        // POST: Opmerkingens/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BehandelPlanNaam,Duur,Hoeveel,PatientId")] Behandelplan behandelplan)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Opmerking,Datum,OpmerkingenGemaaktDoor,ZichtbaarVoorPatiënt,PatientId")] Opmerkingen opmerkingen)
         {
-            if (id != behandelplan.Id)
+            if (id != opmerkingen.Id)
             {
                 return NotFound();
             }
@@ -105,12 +104,12 @@ namespace AvansFysio.Controllers
             {
                 try
                 {
-                    _context.Update(behandelplan);
+                    _context.Update(opmerkingen);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BehandelplanExists(behandelplan.Id))
+                    if (!OpmerkingenExists(opmerkingen.Id))
                     {
                         return NotFound();
                     }
@@ -121,11 +120,11 @@ namespace AvansFysio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", behandelplan.PatientId);
-            return View(behandelplan);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", opmerkingen.PatientId);
+            return View(opmerkingen);
         }
 
-        // GET: Behandelplans/Delete/5
+        // GET: Opmerkingens/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,31 +132,31 @@ namespace AvansFysio.Controllers
                 return NotFound();
             }
 
-            var behandelplan = await _context.Behandelplan
-                .Include(b => b.Patient)
+            var opmerkingen = await _context.Opmerkingen
+                .Include(o => o.Patient)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (behandelplan == null)
+            if (opmerkingen == null)
             {
                 return NotFound();
             }
 
-            return View(behandelplan);
+            return View(opmerkingen);
         }
 
-        // POST: Behandelplans/Delete/5
+        // POST: Opmerkingens/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var behandelplan = await _context.Behandelplan.FindAsync(id);
-            _context.Behandelplan.Remove(behandelplan);
+            var opmerkingen = await _context.Opmerkingen.FindAsync(id);
+            _context.Opmerkingen.Remove(opmerkingen);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BehandelplanExists(int id)
+        private bool OpmerkingenExists(int id)
         {
-            return _context.Behandelplan.Any(e => e.Id == id);
+            return _context.Opmerkingen.Any(e => e.Id == id);
         }
     }
 }

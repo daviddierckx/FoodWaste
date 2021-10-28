@@ -39,13 +39,24 @@ function myFunction() {
     document.getElementById("Omschrijving-btn").addEventListener("click", ()=> {
         document.getElementById("Omschrijving").style.display = "inline-block";
         document.getElementById("Opmerkingen").style.display = "none";
-        console.log("omschrijving btn")
+        document.getElementById("Behandelingen").style.display = "none";
+
 
     });
     document.getElementById("Opmerkingen-btn").addEventListener("click", () => {
         document.getElementById("Opmerkingen").style.display = "inline-block";
         document.getElementById("Omschrijving").style.display = "none";
-        console.log("opmerking btn")
+        document.getElementById("Behandelingen").style.display = "none";
+
+    });
+    document.getElementById("Behandeling-btn").addEventListener("click", () => {
+        document.getElementById("Behandelingen").style.display = "inline-block";
+        document.getElementById("Omschrijving").style.display = "none";
+        document.getElementById("Opmerkingen").style.display = "none";
+
     });
 
 }
+
+
+

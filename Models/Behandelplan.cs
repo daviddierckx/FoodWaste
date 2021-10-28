@@ -17,8 +17,9 @@ namespace AvansFysio.Models
         [Column(TypeName = "int")]
         [Required(ErrorMessage = "Gelieve hoeveel behandelingen per week in te vullen")]
         public int Hoeveel { get; set; }
+        [ForeignKey("PatientId")]
         [Column(TypeName = "int")]
-        public int PatientId;
+        public int PatientId { get; set; }
 
 
         public virtual Patient Patient { get; set; }

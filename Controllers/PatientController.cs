@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AvansFysio.Models;
 using AvansFysio.Repository;
 using Microsoft.AspNetCore.Authorization;
+using System.Dynamic;
 
 namespace AvansFysio.Controllers
 {
@@ -50,11 +51,19 @@ namespace AvansFysio.Controllers
 
             var patient = await _context.Patients.FindAsync(id);
             var behandelplan = _context.Behandelplan.Where(n => n.Patient.Id == id).Select(x => x).FirstOrDefault();
+            var behandeling = _context.Behandeling.Where(n => n.Patient.Id == id).Select(x => x).FirstOrDefault();
+            var opmerkingen = _context.Opmerkingen.Where(n => n.Patient.Id == id).Select(x => x).FirstOrDefault();
+
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Behandelplan = behandelplan;
+            mymodel.Behandeling = behandeling;
+            mymodel.Opmerkingen = opmerkingen;
+
             if (patient == null)
             {
                 return NotFound();
             }
-            return View(behandelplan);
+            return View(mymodel);
         }
        
        
@@ -80,8 +89,8 @@ namespace AvansFysio.Controllers
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
                 int lastProductId = _context.Patients.Max(item => item.Id);
-                ViewData["PatientId"] = lastProductId;
-                return View("~/Views/Behandelplans/Index.cshtml");
+                ViewData["ID"] = lastProductId;
+                return RedirectToAction("Create", "Behandelplans");
             }
             return View(patient);
         }

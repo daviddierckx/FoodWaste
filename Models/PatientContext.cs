@@ -14,7 +14,7 @@ namespace AvansFysio.Models
         }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Behandelplan> Behandelplan { get; set; }
-
-
+        public DbSet<Behandeling> Behandeling { get; set; }
+        public DbSet<Opmerkingen> Opmerkingen { get; set; }
     }
 }

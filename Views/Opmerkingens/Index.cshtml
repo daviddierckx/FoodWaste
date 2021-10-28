@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AvansFysio.Models.Behandelplan>
+﻿@model IEnumerable<AvansFysio.Models.Opmerkingen>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BehandelPlanNaam)
+                @Html.DisplayNameFor(model => model.Opmerking)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duur)
+                @Html.DisplayNameFor(model => model.Datum)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Hoeveel)
+                @Html.DisplayNameFor(model => model.OpmerkingenGemaaktDoor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZichtbaarVoorPatiënt)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Patient)
@@ -31,13 +34,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BehandelPlanNaam)
+                @Html.DisplayFor(modelItem => item.Opmerking)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duur)
+                @Html.DisplayFor(modelItem => item.Datum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hoeveel)
+                @Html.DisplayFor(modelItem => item.OpmerkingenGemaaktDoor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZichtbaarVoorPatiënt)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Patient.Behandeling)

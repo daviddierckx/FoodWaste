@@ -1,0 +1,26 @@
+﻿@model List<AvansFysio.Models.Behandelplan>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Behandelplan</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(modelItem => item.Patient.Email)
+
+        @Html.DisplayFor(modelItem => item.BehandelPlanNaam)
+        @Html.DisplayFor(modelItem => item.Duur)
+        @Html.DisplayFor(modelItem => item.Hoeveel)
+
+
+
+
+    }
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>

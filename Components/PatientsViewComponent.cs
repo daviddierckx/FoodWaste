@@ -12,11 +12,13 @@ namespace AvansFysio.Components
     public class PatientsViewComponent:ViewComponent
     {
         private readonly IPatientRepository _patientRepository;
+        private readonly PatientContext _context;
 
 
-        public PatientsViewComponent(IPatientRepository patientRepository)
+        public PatientsViewComponent(IPatientRepository patientRepository, PatientContext patientContext)
         {
             _patientRepository = patientRepository;
+            _context = patientContext;
         }
 
         public IViewComponentResult Invoke()
@@ -25,6 +27,6 @@ namespace AvansFysio.Components
             ViewData["PatientCount"] = patients;
             return View("patients");
         }
-
+        
     }
 }

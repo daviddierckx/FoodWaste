@@ -50,9 +50,8 @@ else
                                 <th class="cell100 column3">
                                     @Html.DisplayNameFor(model => model.DatumAanmelding)
                                 </th>
-                                <th class="cell100 column4">
-                                    @Html.DisplayNameFor(model => model.Behandelplan)
-                                </th>
+                               
+                              
                                 <th class="cell100 column5">
                                     <a class="btn btn-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a>
 
@@ -83,9 +82,7 @@ else
                                         @Html.DisplayFor(modelItem => item.DatumAanmelding)
                                     </td>
 
-                                    <td class="cell100 column4">
-                                        @Html.DisplayFor(modelItem => item.Behandelplan)
-                                    </td>
+                                 
 
                                     <td class="cell100 column5">
                                         <a asp-action="Edit" asp-route-id="@item.Id" asp-route-slug="@item.Slug">Edit</a> |

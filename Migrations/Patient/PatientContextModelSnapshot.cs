@@ -16,8 +16,35 @@ namespace AvansFysio.Migrations.Patient
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AvansFysio.Models.Behandelplan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BehandelPlanNaam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("Duur")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hoeveel")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Behandelplan");
+                });
 
             modelBuilder.Entity("AvansFysio.Models.Patient", b =>
                 {
@@ -30,10 +57,6 @@ namespace AvansFysio.Migrations.Patient
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("Behandelplan")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
                     b.Property<DateTime>("DatumAanmelding")
                         .HasColumnType("DateTime");
 
@@ -43,6 +66,9 @@ namespace AvansFysio.Migrations.Patient
                     b.Property<string>("DiagnoseCode")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("HoofdBehandelaar")
                         .IsRequired()
@@ -72,12 +98,20 @@ namespace AvansFysio.Migrations.Patient
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("onderSupervisieVan")
-                        .IsRequired()
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("AvansFysio.Models.Behandelplan", b =>
+                {
+                    b.HasOne("AvansFysio.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Patient");
                 });
 #pragma warning restore 612, 618
         }

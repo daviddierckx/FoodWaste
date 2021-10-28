@@ -296,3 +296,136 @@ th, td {
 body {
     overflow-x: hidden !important;
 }
+
+/*======================CREATE PATIENT*================================*/
+section {
+   
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    padding: 20px;
+    box-shadow: 0px 0px 20px #00000020;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.step {
+    display: none;
+}
+
+    .step.active {
+        display: block;
+    }
+
+.form-group {
+    width: 100%;
+    margin-top: 20px;
+}
+
+    .form-group input {
+        width: 100%;
+        border: 1.5px solid rgba(128, 128, 128, 0.418);
+        padding: 5px;
+        font-size: 18px;
+        margin-top: 5px;
+        border-radius: 4px;
+    }
+
+button.next-btn,
+button.previous-btn,
+button.submit-btn {
+    float: right;
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    background-color: forestgreen;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    /* text-align: right; */
+}
+
+button.previous-btn {
+    float: left;
+}
+
+button.submit-btn {
+    background-color: green;
+
+}  
+
+/*=================== Details page ==========================*/
+.profile-container {
+    display:inline-block;
+    width: 500px;
+    text-align: center;
+    height: 350px;
+    background-color: #f5f5f5;
+    padding-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+}
+.profile-details-container {
+    vertical-align: top;
+    width: 650px;
+    display: inline-block;
+    margin-left: 50px;
+    background-color: #f5f5f5;
+    padding-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+}
+    .profile-details-container h4 {
+        color: black;
+        padding-left: 35px;
+        padding-bottom: 30px;
+    }
+    .profile-details-container p {
+        padding-top:10px;
+        display: inline-block;
+        font-weight: bold;
+        padding-left: 35px;
+   }
+    .profile-details-container span {
+        padding-top: 10px;
+        float: right;
+        padding-right: 100px;
+    }
+.profile-details-header {
+    width: 100%;
+    border-bottom: 10px solid #198754;
+}
+    .profile-details-header button {
+        float: right;
+        margin-right: 100px;
+    }
+.section-profile {
+    width: 500px;
+    display:inline-block;
+}
+.profile-container-behandelplan{
+    margin-top: 30px;
+}
+.profile-container-behandelplan h4 {
+    width: 100%;
+    border-bottom: 10px solid #198754;
+    padding-bottom: 20px;
+}
+    .profile-container-behandelplan p {
+        font-size:20px;
+        padding-top: 10px;
+        text-align: left;
+        font-weight: bold;
+        padding-left: 35px;
+    }

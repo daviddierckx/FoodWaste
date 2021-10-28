@@ -48,16 +48,16 @@ namespace AvansFysio.Controllers
                 return NotFound();
             }
 
-            var patient = await _context.Patients
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var patient = await _context.Patients.FindAsync(id);
+            var behandelplan = _context.Behandelplan.Where(n => n.Patient.Id == id).Select(x => x).FirstOrDefault();
             if (patient == null)
             {
                 return NotFound();
             }
-
-            return View(patient);
+            return View(behandelplan);
         }
-
+       
+       
         // GET: Patient/Create
         [Authorize]
         public IActionResult Create()
@@ -65,25 +65,28 @@ namespace AvansFysio.Controllers
             return View();
         }
 
-        // POST: Patient/Create
+        // POST: Patients/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Naam,Leeftijd,Omschrijving,DiagnoseCode,MedewerkerOfStudent,IntakeGedaanDoor,onderSupervisieVan,HoofdBehandelaar,DatumAanmelding,DatumOntslag,Opmerkingen,Behandelplan,Behandeling")] Patient patient)
+        public async Task<IActionResult> Create([Bind("Id,Naam,Email,Leeftijd,Omschrijving,DiagnoseCode,MedewerkerOfStudent,IntakeGedaanDoor,onderSupervisieVan,HoofdBehandelaar,DatumAanmelding,DatumOntslag,Opmerkingen,Behandeling")] Patient patient)
         {
+            var patients = patient.Id;
+
             if (ModelState.IsValid)
             {
+
                 _context.Add(patient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                int lastProductId = _context.Patients.Max(item => item.Id);
+                ViewData["PatientId"] = lastProductId;
+                return View("~/Views/Behandelplans/Index.cshtml");
             }
             return View(patient);
         }
 
-        // GET: Patient/Edit/5
-        [Authorize]
+        // GET: Patients/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -98,14 +101,29 @@ namespace AvansFysio.Controllers
             }
             return View(patient);
         }
+        // GET: Patients/Edit/5
+        public async Task<IActionResult> Behandelplan(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        // POST: Patient/Edit/5
+            var patient = await _context.Patients.FindAsync(id);
+            var behandelplan =  _context.Behandelplan.Where(n => n.Patient.Id == id).Select(x => x).ToList() ;
+            if (patient == null)
+            {
+                return NotFound();
+            }
+            return View(behandelplan);
+        }
+
+        // POST: Patients/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Leeftijd,Omschrijving,DiagnoseCode,MedewerkerOfStudent,IntakeGedaanDoor,onderSupervisieVan,HoofdBehandelaar,DatumAanmelding,DatumOntslag,Opmerkingen,Behandelplan,Behandeling")] Patient patient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Naam,Email,Leeftijd,Omschrijving,DiagnoseCode,MedewerkerOfStudent,IntakeGedaanDoor,onderSupervisieVan,HoofdBehandelaar,DatumAanmelding,DatumOntslag,Opmerkingen,Behandeling")] Patient patient)
         {
             if (id != patient.Id)
             {
@@ -130,13 +148,12 @@ namespace AvansFysio.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("~/patient/details/"+patient.Id);
             }
             return View(patient);
         }
 
-        // GET: Patient/Delete/5
-        [Authorize]
+        // GET: Patients/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -154,10 +171,9 @@ namespace AvansFysio.Controllers
             return View(patient);
         }
 
-        // POST: Patient/Delete/5
+        // POST: Patients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var patient = await _context.Patients.FindAsync(id);

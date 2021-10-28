@@ -15,6 +15,8 @@ namespace AvansFysio.Models
         [Column(TypeName = "nvarchar(250)")]
         [Required(ErrorMessage = "Gelieve naam in te vullen")]
         public string Naam { get; set; }
+        [Column(TypeName = "nvarchar(250)")]
+        public string Email { get; set; }
 
         [Range(0, 150, ErrorMessage = "Gelieve een leeftijd in te vullen")]
         [Required(ErrorMessage = "Gelieve leeftijd in te vullen")]
@@ -39,7 +41,6 @@ namespace AvansFysio.Models
 
         [Column(TypeName = "varchar(200)")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [Required(AllowEmptyStrings = true)]
         public string onderSupervisieVan { get; set; }
 
         [Column(TypeName = "varchar(200)")]
@@ -58,9 +59,6 @@ namespace AvansFysio.Models
         [Required(AllowEmptyStrings = true)]
         public string Opmerkingen { get; set; }
 
-        [Column(TypeName = "varchar(200)")]
-        [Required(ErrorMessage = "Gelieve behandelplan in te vullen")]
-        public string Behandelplan { get; set; }
 
         [Column(TypeName = "varchar(200)")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
@@ -69,6 +67,6 @@ namespace AvansFysio.Models
 
 
 
-        public string Slug => Naam?.Replace(' ', '-').ToLower() + '-' + Leeftijd.ToString();
+        public string Slug => Naam?.Replace(' ', '-').ToLower() + '-' + Id.ToString();
     }
 }

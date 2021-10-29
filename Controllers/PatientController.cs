@@ -9,6 +9,9 @@ using AvansFysio.Models;
 using AvansFysio.Repository;
 using Microsoft.AspNetCore.Authorization;
 using System.Dynamic;
+using System.Net.Http;
+using Newtonsoft.Json;
+using AvansFysio.Helper;
 
 namespace AvansFysio.Controllers
 {
@@ -17,6 +20,7 @@ namespace AvansFysio.Controllers
         private readonly PatientContext _context;
         private readonly IPatientRepository _patientRepository;
         public bool isSorted = true;
+        VektislijstApi _api = new VektislijstApi();
 
         public PatientController(PatientContext context,IPatientRepository patientRepository)
         {
@@ -69,8 +73,25 @@ namespace AvansFysio.Controllers
        
         // GET: Patient/Create
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+
+            List<Vektislijst> vektislijst = new List<Vektislijst>();
+            HttpClient client = _api.Initial();
+            var res = await client.GetAsync("api/Vektislijst");
+            if (res.IsSuccessStatusCode)
+            {
+                string responseBody = await res.Content.ReadAsStringAsync();
+                vektislijst = JsonConvert.DeserializeObject<List<Vektislijst>>(responseBody);
+            }
+
+            List<Vektislijst> vektislijsts = vektislijst;
+            var codes = new List<string>();
+            foreach (var item in vektislijsts)
+            {
+                codes.Add(item.Code.ToString());
+            }
+            ViewBag.DiagnoseCode = codes;
             return View();
         }
 
@@ -81,6 +102,7 @@ namespace AvansFysio.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Naam,Email,Leeftijd,Omschrijving,DiagnoseCode,MedewerkerOfStudent,IntakeGedaanDoor,onderSupervisieVan,HoofdBehandelaar,DatumAanmelding,DatumOntslag,Opmerkingen,Behandeling")] Patient patient)
         {
+
             var patients = patient.Id;
 
             if (ModelState.IsValid)

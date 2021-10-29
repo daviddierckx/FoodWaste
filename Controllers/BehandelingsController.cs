@@ -6,12 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AvansFysio.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
+using AvansFysio.Helper;
 
 namespace AvansFysio.Controllers
 {
     public class BehandelingsController : Controller
     {
         private readonly PatientContext _context;
+        VektislijstApi _api = new VektislijstApi();
 
         public BehandelingsController(PatientContext context)
         {
@@ -76,6 +80,16 @@ namespace AvansFysio.Controllers
         // GET: Behandelings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            List<VektislijstVerrichtingen> vektislijst = new List<VektislijstVerrichtingen>();
+            HttpClient client = _api.Initial();
+            var res = await client.GetAsync("api/VektislijstVerrichtingen");
+            if (res.IsSuccessStatusCode)
+            {
+                string responseBody = await res.Content.ReadAsStringAsync();
+                vektislijst = JsonConvert.DeserializeObject<List<VektislijstVerrichtingen>>(responseBody);
+            }
+          
+          
             if (id == null)
             {
                 return NotFound();
@@ -86,7 +100,13 @@ namespace AvansFysio.Controllers
             {
                 return NotFound();
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", behandeling.PatientId);
+            List<VektislijstVerrichtingen> vektislijsts = vektislijst;
+            var codes = new List<string>();
+            foreach (var item in vektislijsts)
+            {
+                codes.Add(item.Waarde.ToString());
+            }
+            ViewBag.Vektislijst = codes;
             return View(behandeling);
         }
 

@@ -7,6 +7,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AvansFysio.Repository;
+using AvansFysio.Helper;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace AvansFysio.Controllers
 {
@@ -14,6 +17,7 @@ namespace AvansFysio.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IPatientRepository _repository;
+        VektislijstApi _api = new VektislijstApi();
 
         public HomeController(ILogger<HomeController> logger,IPatientRepository repository)
         {
@@ -21,13 +25,17 @@ namespace AvansFysio.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            if (User.IsInRole("Therapeut"))
+            List<Vektislijst> vektislijst = new List<Vektislijst>();
+            HttpClient client = _api.Initial();
+            var res = await client.GetAsync("api/Vektislijst");
+            if (res.IsSuccessStatusCode)
             {
-                return Redirect("~/Patient/Index");
+                string responseBody = await res.Content.ReadAsStringAsync();
+                vektislijst = JsonConvert.DeserializeObject<List<Vektislijst>>(responseBody);
             }
-            return View(_repository.GetAllPatients());
+            return View(vektislijst);
         }
 
         [HttpGet]

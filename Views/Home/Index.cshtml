@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AvansFysio.Models.Patient>
+﻿@model IEnumerable<AvansFysio.Models.Vektislijst>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -15,15 +15,13 @@
                 <tr><th>ID</th><th>Patient</th><th>Omschrijving klachten globaal</th><th>DiagnoseCode</th><th></th></tr>
             </thead>
             <tbody>
-                @foreach (AvansFysio.Models.Patient r in Model)
+                @foreach (AvansFysio.Models.Vektislijst r in Model)
                 {
                     <tr>
-                        <td>@r.Id</td>
-                        <td>@r.Naam</td>
-                        <td>@r.Omschrijving</td>
-                        <td>@r.DiagnoseCode</td>
+                        <td>@r.Code</td>
+                        <td>@r.lichaamslocalisatie</td>
+                        <td>@r.pathologie</td>
                         <td>
-                        <a asp-action="Details" asp-route-id="@r.Id" asp-route-slug="@r.Slug">Details</a>
                         </td>
                     </tr>
                 }

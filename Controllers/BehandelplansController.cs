@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AvansFysio.Models;
+using AvansFysio.Helper;
 
 namespace AvansFysio.Controllers
 {
     public class BehandelplansController : Controller
     {
         private readonly PatientContext _context;
+        VektislijstApi _api = new VektislijstApi();
 
         public BehandelplansController(PatientContext context)
         {
@@ -75,6 +77,7 @@ namespace AvansFysio.Controllers
         // GET: Behandelplans/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();

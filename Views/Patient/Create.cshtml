@@ -126,7 +126,9 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="DiagnoseCode">Diagnose Code</label>
-                    <input asp-for="DiagnoseCode" type="text" id="diagnosecode">
+                    <select asp-for="DiagnoseCode" type="text" id="diagnosecode" value="" asp-items="new SelectList(ViewBag.DiagnoseCode)">
+                    </select>
+                
                     <span asp-validation-for="DiagnoseCode" class="text-danger"></span>
 
                 </div>

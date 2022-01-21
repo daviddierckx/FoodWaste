@@ -71,7 +71,7 @@ namespace AvansFysio
                 endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Patient}/{action=Index}/{id?}/{slug?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{slug?}");
             });
         }
     }

@@ -23,25 +23,30 @@
 
         <div class="sidebar-container">
             <div class="sidebar-logo">
-                <img src="~/img/fysiologo.png" style="width:50px;" />
+                <img alt="fysio logo" src="~/img/fysiologo.png" style="width:50px;" />
                 <span>Avans Fysio</span>
             </div>
             <ul class="sidebar-navigation">
                 <li>
-                    <a asp-controller="Patient" asp-action="Index">
-                        <i class="fa fa-address-book" aria-hidden="true"></i>Home
+                    <a asp-controller="Home" asp-action="Index" style="border-top: 1px solid black">
+                        <i class="fas fa-home" aria-hidden="true"></i>Home
                     </a>
                 </li>
                 <li>
                     <a asp-controller="Patient" asp-action="Index">
-                        <i class="fa fa-address-book" aria-hidden="true"></i>Behandelingen
+                        <i class="fa fa-address-book" aria-hidden="true"></i>Register
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Beschikbaars" asp-action="Index">
+                        <i class="fas fa-calendar-week" aria-hidden="true"></i>Agenda
                     </a>
                 </li>
                 @if (User.IsInRole("Therapeut"))
                 {
                     <li>
                         <a asp-controller="Patient" asp-action="Index">
-                            <i class="fa fa-address-book" aria-hidden="true"></i>Patienten
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>Mijn afspraken
                         </a>
                     </li>
                 }
@@ -61,13 +66,18 @@
         }
         <div class="nav-bar">
             <div class="nav-bar-items">
-                <div style="float:right; ">
+                <div style="float:right;">
+                    <img alt="user profile logo" class="user-profile-logo" src="~/img/User-Profile-PNG-Clipart.png" />
                     @if (User.IsInRole("Therapeut"))
                     {
-                        <p>Aantal patientent vandaag: @await Component.InvokeAsync("Patients")</p>
+                        <p style="">Aantal patientent vandaag: @await Component.InvokeAsync("Patients")</p>
 
                     }
+                    <br />
+                    @if (user != null)
+                    {
                     <p>Hallo, @user.UserName</p>
+                    }
                 </div>
 
             </div>

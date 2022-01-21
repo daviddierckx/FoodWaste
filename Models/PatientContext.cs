@@ -16,5 +16,6 @@ namespace AvansFysio.Models
         public DbSet<Behandelplan> Behandelplan { get; set; }
         public DbSet<Behandeling> Behandeling { get; set; }
         public DbSet<Opmerkingen> Opmerkingen { get; set; }
+        public DbSet<Beschikbaar> Beschikbaar { get; set; }
     }
 }

@@ -6,18 +6,20 @@
 
 }
 
-<h1>Edit</h1>
 
-<h4>Behandelplan</h4>
-<hr />
-<div class="row">
+<div class="row container">
+    <div class="container-header">
+
+        <h2>Behandelplan</h2>
+    </div>
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="BehandelPlanNaam" class="control-label">Behandelplan naam
-               </label>
+                <label asp-for="BehandelPlanNaam" class="control-label">
+                    Behandelplan naam
+                </label>
                 <input asp-for="BehandelPlanNaam" class="form-control" />
                 <span asp-validation-for="BehandelPlanNaam" class="text-danger"></span>
             </div>
@@ -33,11 +35,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="PatientId" class="control-label">Patient ID</label>
-                <input asp-for="PatientId" value="@Model.PatientId"  readonly class="form-control" />
+                <input asp-for="PatientId" value="@Model.PatientId" readonly class="form-control" />
                 <span asp-validation-for="PatientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
+                <input type="submit" value="Save" class="btn btn-success btn-form" />
             </div>
         </form>
     </div>

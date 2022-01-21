@@ -81,6 +81,9 @@ ul li a:hover {
 .fa-plus {
     padding-right: 10px;
 }
+.fas {
+    padding-right: 10px;
+}
 body {
     background-color: #e5e5e5;
 }
@@ -253,14 +256,16 @@ th, td {
 .table100.ver1 td {
     padding-top: 30px;
     font-size: 16px;
-    color: #808080;
+    color: black;
     line-height: 1.4;
 }
 
 .table100.ver1 .table100-body tr:nth-child(even) {
     background-color: #f5f5f5;
 }
-
+.table100 {
+    color: black !important;
+}
 /*---------------------------------------------*/
 
 .table100.ver1 {
@@ -314,7 +319,10 @@ section {
     border-radius: 8px;
     background-color: white;
 }
-
+.sidebar-navigation li{
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+}
 .step {
     display: none;
 }
@@ -429,3 +437,88 @@ button.submit-btn {
         font-weight: bold;
         padding-left: 35px;
     }
+
+
+
+    /*====================HOME=============================*/
+.header-text{
+    display:inline-block;
+    width:500px;
+    margin-top:110px;
+
+}
+    .header-text h1 {
+        font-weight: bold;
+        color: black;
+     
+    }
+.header-image {
+    width:620px;
+    display: inline-block;
+    float:right;
+}
+.wave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+.header-btn {
+    background-color: none; /* Green */
+    border: 2px solid #4CAF50;
+    color: black;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: 0.3s ease-in;
+}
+    .header-btn:hover {
+        background-color: #4CAF50; /* Green */
+        border: 2px solid #4CAF50;
+        color: white;
+        padding: 15px 32px;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 10px;
+    }
+.user-profile-logo{
+    width:50px;
+    display:inline-block;
+    float:left;
+    margin-right:30px;
+}
+.nav-bar-items{
+    display: inline-block;
+    padding-top:10px;
+}
+.nav-bar-items p {
+    display: inline-block;
+    margin-bottom: 0px;
+}
+.container-header {
+    height: 50px;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    color: black;
+}
+.btn-form {
+    background-color: #4CAF50 !important;
+    color: black;
+}
+a{
+    text-decoration:none;
+    color:black;
+}
+
+@media only screen and (max-width: 1420px) {
+ 
+.header-image {
+   display:none;
+}    
+}
+
+input[type="checkbox"] { /* change "blue" browser chrome to yellow */
+    filter: invert(2000%) hue-rotate(130deg) brightness(5);
+}

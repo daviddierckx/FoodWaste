@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AvansFysio.Migrations.Patient
 {
     [DbContext(typeof(PatientContext))]
-    [Migration("20211028204722_InialMigrate")]
-    partial class InialMigrate
+    [Migration("20211029172553_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +87,30 @@ namespace AvansFysio.Migrations.Patient
                     b.HasIndex("PatientId");
 
                     b.ToTable("Behandelplan");
+                });
+
+            modelBuilder.Entity("AvansFysio.Models.Beschikbaar", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<TimeSpan>("BeginTijd")
+                        .HasColumnType("time(1)");
+
+                    b.Property<bool>("BeschikbaarOpDieDag")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Dag")
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<TimeSpan>("EindTijd")
+                        .HasColumnType("time(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Beschikbaar");
                 });
 
             modelBuilder.Entity("AvansFysio.Models.Opmerkingen", b =>

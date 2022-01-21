@@ -4,11 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>Opmerkingen</h4>
-<hr />
-<div class="row">
+<div class="row container">
+    <div class="container-header">
+
+        <h2>Opmerkingen</h2>
+    </div>
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -20,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Datum" class="control-label"></label>
-                <input asp-for="Datum" class="form-control" />
+                <input asp-for="Datum" value="@DateTime.Now.Date.ToString("dd/MM/yyyy")" readonly class="form-control" />
                 <span asp-validation-for="Datum" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,14 +40,14 @@
                 <span asp-validation-for="PatientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success btn-form" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="~/patient/details/@Model.Id">Back to List</a>
 </div>
 
 @section Scripts {

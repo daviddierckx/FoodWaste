@@ -1,0 +1,121 @@
+﻿@model IEnumerable<AvansFysio.Models.Beschikbaar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Agenda</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BeschikbaarOpDieDag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BeginTijd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EindTijd)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeschikbaarOpDieDag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginTijd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EindTijd)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
+
+<div class="limiter" role="grid">
+    <div class="wrap-table100">
+        <div class="table100 ver1 m-b-110">
+            <div class="table100-head">
+                <table>
+                    <thead>
+                        <tr class="row100 head">
+                            <th class="cell100 column1">Beschikbaar</th>
+                            <th class="cell100 column2">
+                                @Html.DisplayNameFor(model => model.Dag)
+                            </th>
+                            <th class="cell100 column3">
+                                Begin Tijd
+                            </th>
+                            <th class="cell100 column3">
+                               Eind tijd
+                            </th>
+
+                            @*<th class="cell100 column5">
+                                <a class="btn btn-success plusPatient" asp-action="Create"><i class="fa fa-plus"></i>Patient</a>
+
+                            </th>*@
+
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="table100-body js-pscroll">
+                <table>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="row100 body">
+                            <td class="cell100 column1">
+                                @Html.DisplayFor(modelItem => item.BeschikbaarOpDieDag)
+                            </td>
+
+                            <td class="cell100 column2">
+                                @Html.DisplayFor(modelItem => item.Dag)
+                            </td>
+
+                            <td class="cell100 column3">
+                                @Html.DisplayFor(modelItem => item.BeginTijd)
+                            </td>
+                            <td class="cell100 column3">
+                                @Html.DisplayFor(modelItem => item.EindTijd)
+                            </td>
+
+
+                            @*<td class="cell100 column5">
+                                <a asp-action="Edit" asp-route-id="@item.Id" >Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id" >Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id" >Delete</a>
+                            </td>*@
+                        </tr>
+                        }
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

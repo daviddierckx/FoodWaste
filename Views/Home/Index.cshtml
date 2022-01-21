@@ -4,29 +4,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <a asp-action="VoegPatient">
-        <button type="button" class="btn btn-success">Toevoegen Patient</button>
-    </a>
-    <h1>Lijst Van Patiënten</h1>
-    <div class="text-center p-2">
-        <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr><th>ID</th><th>Patient</th><th>Omschrijving klachten globaal</th><th>DiagnoseCode</th><th></th></tr>
-            </thead>
-            <tbody>
-                @foreach (AvansFysio.Models.Vektislijst r in Model)
-                {
-                    <tr>
-                        <td>@r.Code</td>
-                        <td>@r.lichaamslocalisatie</td>
-                        <td>@r.pathologie</td>
-                        <td>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="header-home">
+ 
+    <div class="header-text">
+        <h1>WELKOM BIJ <br /> AVANS FYSIO</h1>
+        <p>
+            Het is al geruime tijd een bekend gegeven dat een lezer, tijdens het bekijken van de layout van een pagina, afgeleid wordt door de tekstuele inhoud.
+            Het belangrijke punt van het gebruik van Lorem Ipsum is dat het uit een min of meer normale verdeling van letters bestaat, in tegenstelling tot "Hier uw tekst,
+            hier uw tekst" wat het tot min of meer leesbaar nederlands maakt. Veel desktop publishing pakketten en web pagina editors gebruiken tegenwoordig Lorem Ipsum als hun standaard model tekst, en een zoekopdracht naar "lorem ipsum" ontsluit veel websites die nog in aanbouw zijn.
+            Verscheidene versies hebben zich ontwikkeld in de loop van de jaren, soms per ongeluk soms expres (ingevoegde humor en dergelijke).
+        </p>
+        <button class="header-btn">MAAK EEN AFSPRAAK</button>
     </div>
-
+    <img alt="header-image" class="header-image" src="~/img/Online Doctor-rafiki.png" />
 </div>

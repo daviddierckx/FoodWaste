@@ -5,9 +5,12 @@
 
 }
 
-<h4>Behandeling</h4>
-<hr />
-<div class="row">
+
+<div class="row container">
+    <div class="container-header">
+
+        <h2>Behandeling</h2>
+    </div>
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -15,7 +18,6 @@
             <div class="form-group">
                 <label asp-for="Type" class="control-label"></label>
                 <select asp-for="Type" value="" class="form-control" asp-items="new SelectList(ViewBag.Vektislijst)">
-
                 </select>
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
@@ -38,22 +40,22 @@
                 <span asp-validation-for="Bijzonderheden" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BehandelingUitgevoerdDoor" class="control-label"></label>
+                <label asp-for="BehandelingUitgevoerdDoor" class="control-label">Behandeling uitgevoerd door</label>
                 <input asp-for="BehandelingUitgevoerdDoor" value="" class="form-control" />
                 <span asp-validation-for="BehandelingUitgevoerdDoor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BehandelingUitgevoerdDatum" class="control-label"></label>
+                <label asp-for="BehandelingUitgevoerdDatum" class="control-label">Behandeling uitgevoerd datum</label>
                 <input asp-for="BehandelingUitgevoerdDatum" value="" type="date" class="form-control" />
                 <span asp-validation-for="BehandelingUitgevoerdDatum" class="text-danger"></span>
             </div>
             <div class="form-group" style="display:none">
                 <label asp-for="PatientId" class="control-label"></label>
-                <input asp-for="PatientId" readonly value="@Model.Id"/>
+                <input asp-for="PatientId" readonly value="@Model.Id" />
                 <span asp-validation-for="PatientId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save"  class="btn btn-success btn-form" />
             </div>
         </form>
     </div>

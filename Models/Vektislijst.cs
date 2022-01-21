@@ -10,7 +10,7 @@ namespace AvansFysio.Models
     public class Vektislijst
     {
         public int? Code { get; set; }
-        public string? lichaamslocalisatie { get; set; }
-        public string? pathologie { get; set; }
+        public string lichaamslocalisatie { get; set; }
+        public string pathologie { get; set; }
     }
 }

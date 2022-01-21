@@ -3,10 +3,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AvansFysio.Migrations.Patient
 {
-    public partial class InialMigrate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Beschikbaar",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BeschikbaarOpDieDag = table.Column<bool>(type: "bit", nullable: false),
+                    Dag = table.Column<string>(type: "nvarchar(250)", nullable: true),
+                    BeginTijd = table.Column<TimeSpan>(type: "time(1)", nullable: false),
+                    EindTijd = table.Column<TimeSpan>(type: "time(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Beschikbaar", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
@@ -125,6 +141,9 @@ namespace AvansFysio.Migrations.Patient
 
             migrationBuilder.DropTable(
                 name: "Behandelplan");
+
+            migrationBuilder.DropTable(
+                name: "Beschikbaar");
 
             migrationBuilder.DropTable(
                 name: "Opmerkingen");

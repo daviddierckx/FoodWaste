@@ -31,7 +31,7 @@ namespace AvansFysio.Views
             {
                 var user = new IdentityUser()
                 {
-                    UserName = Model.Email,
+                    UserName = Model.Username,
                     Email = Model.Email
                 };
 

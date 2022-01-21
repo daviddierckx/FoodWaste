@@ -25,16 +25,19 @@
                 <span asp-validation-for="Datum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OpmerkingenGemaaktDoor" class="control-label"></label>
+                <label asp-for="OpmerkingenGemaaktDoor" class="control-label">Opmerkingen gemaakt door</label>
                 <input asp-for="OpmerkingenGemaaktDoor" class="form-control" />
                 <span asp-validation-for="OpmerkingenGemaaktDoor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ZichtbaarVoorPatiënt" class="control-label"></label>
-                <input asp-for="ZichtbaarVoorPatiënt" class="form-control" />
+                <label asp-for="ZichtbaarVoorPatiënt" class="control-label">zichtbaar voor patiënt?</label>
+                <select asp-for="ZichtbaarVoorPatiënt" class="form-control">
+                    <option value="ja">Ja</option>
+                    <option value="nee">Nee</option>
+                </select>
                 <span asp-validation-for="ZichtbaarVoorPatiënt" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="PatientId" class="control-label"></label>
                 <select asp-for="PatientId" class="form-control" asp-items="ViewBag.PatientId"></select>
                 <span asp-validation-for="PatientId" class="text-danger"></span>

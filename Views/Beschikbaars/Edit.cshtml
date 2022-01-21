@@ -13,10 +13,11 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BeschikbaarOpDieDag" /> @Html.DisplayNameFor(model => model.BeschikbaarOpDieDag)
+            <div class="form-group">
+                <label class="control-label">
+                    Beschikbaar?
                 </label>
+                <input class="form-check" asp-for="BeschikbaarOpDieDag"/>
             </div>
             <div class="form-group">
                 <label asp-for="Dag" class="control-label"></label>
@@ -24,12 +25,12 @@
                 <span asp-validation-for="Dag" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BeginTijd" class="control-label"></label>
+                <label asp-for="BeginTijd" class="control-label">Begin tijd</label>
                 <input asp-for="BeginTijd" class="form-control" />
                 <span asp-validation-for="BeginTijd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EindTijd" class="control-label"></label>
+                <label asp-for="EindTijd" class="control-label">Eind tijd</label>
                 <input asp-for="EindTijd" class="form-control" />
                 <span asp-validation-for="EindTijd" class="text-danger"></span>
             </div>

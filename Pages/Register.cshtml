@@ -13,35 +13,43 @@
     <div class="login-content">
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-                <img alt="fysio logo" src="/img/fysiologo.png">
-                <h2 class="title">Register</h2>
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Email" type="text" asp-for="Model.Email" class="input" />
-                    </div>
+            <img alt="fysio logo" src="/img/fysiologo.png">
+            <h2 class="title">Register</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
                 </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Password" type="password" asp-for="Model.Password" class="input" />
-                    </div>
+                <div class="div">
+                    <input placeholder="Naam" type="text" asp-for="Model.Username" class="input" />
                 </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <input placeholder="Confirm Password" type="password" asp-for="Model.ConfirmPassword" class="input" />
-                    </div>
+            </div>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
                 </div>
-                <br />
-                <input type="submit" class="btn" value="Register">
-                  <a asp-page="/Login" class="secondary-btn">Login</a>
+                <div class="div">
+                    <input placeholder="Email" type="text" asp-for="Model.Email" class="input" />
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <input placeholder="Password" type="password" asp-for="Model.Password" class="input" />
+                </div>
+            </div>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <input placeholder="Confirm Password" type="password" asp-for="Model.ConfirmPassword" class="input" />
+                </div>
+            </div>
+            <br />
+            <input type="submit" class="btn" value="Register">
+            <a asp-page="/Login" class="secondary-btn">Login</a>
 
         </form>
     </div>

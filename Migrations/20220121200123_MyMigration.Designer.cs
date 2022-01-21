@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AvansFysio.Migrations.Patient
+namespace AvansFysio.Migrations
 {
     [DbContext(typeof(PatientContext))]
-    [Migration("20211029172553_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220121200123_MyMigration")]
+    partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

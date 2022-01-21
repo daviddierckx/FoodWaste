@@ -104,7 +104,7 @@
 
         </a>|
     </div>
-    @if (Model.Opmerkingen.Opmerking.Length > 1)
+    @if (Model.Opmerkingen.Opmerking.Length > 1 && Model.Opmerkingen.ZichtbaarVoorPatiënt == "ja")
     {
         <div class="profile-details-container-text">
             <p>Opmerking </p><span>@Model.Opmerkingen.Opmerking</span>

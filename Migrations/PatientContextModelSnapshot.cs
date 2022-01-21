@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AvansFysio.Migrations.Patient
+namespace AvansFysio.Migrations
 {
     [DbContext(typeof(PatientContext))]
     partial class PatientContextModelSnapshot : ModelSnapshot

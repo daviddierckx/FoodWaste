@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AvansFysio.Migrations
+namespace AvansFysio.Migrations.AuthDb
 {
-    public partial class AddAuthentication : Migration
+    public partial class MyMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

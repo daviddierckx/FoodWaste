@@ -118,9 +118,9 @@ namespace AvansFysio.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("~/patient/details/" + id);
             }
-            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", opmerkingen.PatientId);
+            ViewData["PatientId"] = new SelectList(_context.Patients, "Id", "Behandeling", opmerkingen.Patient);
             return View(opmerkingen);
         }
 
